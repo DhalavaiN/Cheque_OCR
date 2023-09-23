@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cheque OCR</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        #header {
+            background: #50b3a2;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+        #upload-form {
+            margin: 20px 0;
+        }
+        #upload-form input[type="file"] {
+            padding: 10px;
+        }
+        #upload-form button {
+            background: #50b3a2;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        #result {
+            margin: 20px 0;
+        }
+        #result h2 {
+            color: #50b3a2;
+        }
+        #result img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="header">
+            <h1>Cheque OCR</h1>
+        </div>
+        <form id="upload-form" method="POST" enctype="multipart/form-data">
+            <input type="file" name="file" accept=".jpg, .jpeg, .png">
+            <button type="submit">Submit</button>
+        </form>
+
+        {% if result %}
+            <div id="result">
+                <h2>Result:</h2>
+                <p>{{ result }}</p>
+                {% if uploaded_image %}
+                    <h2>Uploaded Image:</h2>
+                    <img src="{{ uploaded_image }}" alt="Uploaded Image">
+                {% endif %}
+                {% if csv_file %}
+                    <h2>CSV Output:</h2>
+                    <a href="{{ url_for('csv_output') }}" download>Download CSV</a>
+                {% endif %}
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSV Output</title>
+</head>
+<body>
+    <h1>CSV Output</h1>
+    <a href="{{ url_for('csv_output') }}" download>Download CSV</a>
+    <br>
+    <h2>CSV Data:</h2>
+    <pre>
+        {% if csv_data %}
+            {{ csv_data }}
+        {% else %}
+            CSV data not available.
+        {% endif %}
+    </pre>
+</body>
+</html>
